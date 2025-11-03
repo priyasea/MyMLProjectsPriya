@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field,ConfigDict
 app = FastAPI(title="lead_scoring")
 
 
-with open('pipeline_v1.bin', 'rb') as f_in:
+with open('/code/pipeline_v2.bin', 'rb') as f_in:
     pipeline = pickle.load(f_in)
 
 def predict_single(customer):
@@ -24,3 +24,6 @@ def predict_leadscore(customer: Dict[str, Any]):
         "converted_probability": prob,
         "converted": bool(prob >= 0.5)
     }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=9696)

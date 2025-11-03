@@ -8,6 +8,8 @@ client = {
     "annual_income": 80304.0
 }
 
+
+
 response = requests.post(url, json=client).json()
 
 
